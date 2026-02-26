@@ -31,16 +31,6 @@ def main():
     img.save(args.output)
     print(f'Wallpaper saved as {args.output}')
 
-
-        
-        
-    
-
-
-
-
-
-
 def create_gradient_wallpaper(norm, size, vibrancy, out_width, gradient):
     """Create vibrant gradient wallpaper with smooth hue variations"""
     src_width = int(norm.shape[1])

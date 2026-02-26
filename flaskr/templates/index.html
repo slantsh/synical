@@ -1,0 +1,29 @@
+<html>
+    
+<head>
+    <title>Synical</title>
+    <link rel="stylesheet" href="/static/dist/out.css">
+</head>
+<body class="bg-gray-200">
+    <h1 class="flex justify-center text-black text-7xl font-bold pt-40 pb-10">
+        Welcome to Synical!
+    </h1>
+    <div class="bg-transparent border-2 p-10 rounded-lg shadow-md w-1/2 mx-auto">
+    <div class="text-center text-2xl p-10 ">
+    <span>Create beautiful wallpapers that carry the essence of</span>
+    <span class="bg-clip-text text-transparent text-4xl font-bold italic bg-linear-to-r from-red-700 to-violet-700">music.</span>
+    </div>
+
+    <form class="flex flex-col gap-2" action="/upload" method="POST" enctype="multipart/form-data">
+        <label for="audio-file">Select a song:</label>
+        <input class="btn"type="file" id="audio-file" name="file" accept="audio/*">
+        <button class="btn">Create Wallpaper</button>
+    </form>
+    </div>
+<footer class="fixed bottom-0 left-0 w-full text-xl bg-white/50 backdrop-blur-sm border-t p-6 text-center shadow-md">
+        <span> Built by </span>
+        <a class="font-bold hover:underline hover:text-transparent hover:bg-clip-text hover:bg-linear-to-r from-red-500 to-blue-500" href="https://github.com/slantsh"> slantsh </a>
+    </footer>
+    </body>
+</body>
+</html>
