@@ -1,1 +1,4 @@
 flask
+librosa
+numpy
+Pillow

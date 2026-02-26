@@ -17,14 +17,45 @@
         <div class="text-center text-xl sm:text-2xl p-6">
             <span>Create beautiful wallpapers that carry the essence of </span>
             <span class="bg-clip-text text-transparent text-3xl sm:text-4xl font-bold italic
-                         bg-linear-to-r from-red-700 to-violet-700">
+                         bg-gradient-to-r from-red-700 to-violet-700">
                 music.
             </span>
         </div>
 
         <form class="flex flex-col gap-4" action="/upload" method="POST" enctype="multipart/form-data">
             <label for="audio-file" class="font-medium">Select a song:</label>
-            <input class="btn" type="file" id="audio-file" name="file" accept="audio/*">
+            <input class="btn" type="file" id="audio-file" name="file" accept="audio/*" required>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="flex flex-col">
+                    <label for="size" class="font-medium text-sm">Size:</label>
+                    <select id="size" name="size" class="border rounded px-2 py-1">
+                        <option value="720">720p (HD)</option>
+                        <option value="1080" selected>1080p (Full HD)</option>
+                        <option value="1440">1440p (2K)</option>
+                        <option value="2160">2160p (4K)</option>
+                    </select>
+                </div>
+                
+                <div class="flex flex-col">
+                    <label for="vibrancy" class="font-medium text-sm">Vibrancy:</label>
+                    <select id="vibrancy" name="vibrancy" class="border rounded px-2 py-1">
+                        <option value="0.5">Muted</option>
+                        <option value="1.0" selected>Normal</option>
+                        <option value="1.5">Vibrant</option>
+                        <option value="2.0">Extra Vibrant</option>
+                    </select>
+                </div>
+                
+                <div class="flex flex-col">
+                    <label for="gradient" class="font-medium text-sm">Gradient:</label>
+                    <select id="gradient" name="gradient" class="border rounded px-2 py-1">
+                        <option value="linear" selected>Linear</option>
+                        <option value="radial">Radial</option>
+                    </select>
+                </div>
+            </div>
+            
             <button class="btn">Create Wallpaper</button>
         </form>
     </div>
@@ -35,9 +66,29 @@
                sm:fixed sm:bottom-0 sm:left-0">
         <span>Built by</span>
         <a class="font-bold hover:underline hover:text-transparent hover:bg-clip-text 
-                  hover:bg-linear-to-r from-red-500 to-blue-500"
+                  hover:bg-gradient-to-r from-red-500 to-blue-500"
            href="https://github.com/slantsh">slantsh</a>
     </footer>
+    
+    <script>
+        const form = document.querySelector('form');
+        const btn = form.querySelector('button.btn');
+        const fileInput = document.querySelector('#audio-file');
 
+        form.onsubmit = (e) => {
+            if (!fileInput.files || fileInput.files.length === 0) {
+                e.preventDefault();
+                alert('Please select an audio file first!');
+                return false;
+            }
+            
+            if (btn) {
+                btn.innerHTML = "Creating Magic... ✨";
+                btn.classList.add('opacity-50', 'cursor-not-allowed');
+                btn.disabled = true;
+            }
+        };
+    </script>
 </body>
+
 </html>

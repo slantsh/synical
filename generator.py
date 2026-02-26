@@ -28,8 +28,7 @@ def main():
     crop_box = (10, 0, 1920, args.size)
     img = img.crop(crop_box)
     
-    img.save(args.output)
-    print(f'Wallpaper saved as {args.output}')
+    return img
 
 def create_gradient_wallpaper(norm, size, vibrancy, out_width, gradient):
     """Create vibrant gradient wallpaper with smooth hue variations"""

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Upload</title>
+</head>
+<body>
+    <h1>Simple Upload Test</h1>
+    
+    <form action="/test-upload" method="POST" enctype="multipart/form-data">
+        <label for="file">Select file:</label>
+        <input type="file" id="file" name="file" required>
+        <br><br>
+        <label for="size">Size:</label>
+        <select name="size">
+            <option value="1080">1080</option>
+        </select>
+        <br><br>
+        <button type="submit">Test Upload</button>
+    </form>
+</body>
+</html>
