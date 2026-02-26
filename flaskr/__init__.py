@@ -77,6 +77,15 @@ def create_app(test_config=None):
                 vibrancy = float(fl.request.form.get('vibrancy', 1.0))
                 gradient_type = fl.request.form.get('gradient', 'linear')
                 
+                # Map resolution to appropriate width
+                resolution_width_map = {
+                    720: 1280,   # 720p HD (16:9 aspect ratio)
+                    1080: 1920,  # 1080p Full HD (16:9 aspect ratio)
+                    1440: 2560,  # 1440p 2K (16:9 aspect ratio)
+                    2160: 3840   # 2160p 4K (16:9 aspect ratio)
+                }
+                width = resolution_width_map.get(size, 1920)
+                
                 # Validate parameters
                 if size < 480 or size > 3840:
                     size = 1080
@@ -92,7 +101,7 @@ def create_app(test_config=None):
                 audio, sr = librosa.load(file_data, duration=30)
                 mfcc = librosa.feature.mfcc(y=audio, sr=sr, n_mfcc=40)
                 norm = ((mfcc - numpy.min(mfcc)) / (numpy.max(mfcc) - numpy.min(mfcc))) * 255
-                img = generator.create_gradient_wallpaper(norm, size, vibrancy, 1920, gradient_type)
+                img = generator.create_gradient_wallpaper(norm, size, vibrancy, width, gradient_type)
                 img_io = io.BytesIO()
                 img.save(img_io, format='PNG')
                 img_io.seek(0)
