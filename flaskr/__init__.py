@@ -16,9 +16,6 @@ def create_app(test_config=None):
         # load the test config if passed in
         app.config.from_mapping(test_config)
 
-    # ensure the instance folder exists
-    os.makedirs(app.instance_path, exist_ok=True)
-
     @app.route('/')
     def home():
         return fl.render_template('index.html')
